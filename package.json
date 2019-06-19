@@ -1,0 +1,17 @@
+{
+  "name": "andrewcmoss_express",
+  "version": "1.0.0",
+  "description": "My personal website, built in express",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "author": "Andrew Moss",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1",
+    "pug": "^2.0.3"
+  }
+}
