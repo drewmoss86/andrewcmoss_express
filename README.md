@@ -1,5 +1,11 @@
 # andrewcmoss_express
-This is my website built with Express and React
+This is my personal website built with Express and React
+
+Preqs: 
+`npm`     : `https://nodejs.org/en/download/`
+`mongodb` : `https://docs.mongodb.com/manual/installation/`
+
+After cloning, run `npm install`
 
 It's my first foray into the MERN stack, so it is still very much a work-in-progress. 
 
