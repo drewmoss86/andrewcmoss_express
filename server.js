@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 const port = process.env.PORT || 5000;
 
 //bring in schema
@@ -12,7 +13,7 @@ const Contact = require('./model/Contact');
 const Log = require('./model/Log');
 
 //cannot access localhost:27017 on http interface
-mongoose.connect('mongodb://localhost:27017/andrewcmoss_express', { useNewUrlParser: true });
+mongoose.connect('mongodb://drewmoss86:D7r9e8w6@localhost:27017/andrewcmoss_express', { useNewUrlParser: true });
 const connection = mongoose.connection;
 
 //connect to mongodb
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/contact', contactRoutes);
 app.use('/log', logRoutes);
+app.use('/', express.static(path.join(__dirname, '/public/build/')));
 
 
 /****
@@ -67,29 +69,6 @@ contactRoutes.route('/add').post( (req, res) => {
 		});
 });
 
-//update contact
-// contactRoutes.route('/update/:id').post( (req, res) => {
-// 	Contact.findById(req.params.id, (err, contact) => {
-// 		if(!contact) {
-// 			res.status(400).send("Record not found!");
-// 		} else {
-// 			contact.name = req.body.name;
-// 			contact.organization = req.body.organization;
-// 			contact.email = req.body.email;
-// 			contact.phone = req.body.phone;
-// 			contact.message = req.body.message;
-
-// 			contact.save()
-// 			.then(contact => {
-// 				res.json("Contact updated!");
-// 			})
-// 			.catch(err => {
-// 				res.status(400).send("Contact NOT updated");
-// 			});
-// 		}
-// 	});
-// });
-
 /**
  * 
  * Routes for logs collection
@@ -123,7 +102,7 @@ logRoutes.route('/:id').get( (req, res) => {
 logRoutes.route('/add').post( (req, res) => {
 	let log = new Log(req.body);
 	log.save()
-	.then(contact => { 
+	.then(log => { 
 		res.status(200).json({'log': 'Log added successfully!'});
 	})
 	.catch(err => {
@@ -131,5 +110,23 @@ logRoutes.route('/add').post( (req, res) => {
 	});
 });
 
+//update log
+logRoutes.route('/update/:id').post( (req, res) => {
+	Contact.findById(req.params.id, (err, log) => {
+		if(!log) {
+			res.status(400).send("Log not found!");
+		} else {
+			log.title = req.body.title;
+			log.body = req.body.body;
+			log.save()
+			.then(log => {
+				res.json("Log updated!");
+			})
+			.catch(err => {
+				res.status(400).send("Log NOT updated");
+			});
+		}
+	});
+});
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
