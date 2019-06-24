@@ -7,7 +7,7 @@ Cheers.
 
 
 Preqs:  
-`npm`     : `https://nodejs.org/en/download/`  
-`mongodb` : `https://docs.mongodb.com/manual/installation/`
+`npm`     : https://nodejs.org/en/download/  
+`mongodb` : https://docs.mongodb.com/manual/installation/
 
 After cloning, run `npm install`
