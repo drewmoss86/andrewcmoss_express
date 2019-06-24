@@ -1,18 +1,21 @@
 const express = require('express');
 const contactRoutes = express.Router();
+const logRoutes = express.Router();
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const port = process.env.PORT || 5000;
 
+//bring in schema
 const Contact = require('./model/Contact');
+const Log = require('./model/Log');
 
-// mongoose.Promise = global.Promise;
 //cannot access localhost:27017 on http interface
 mongoose.connect('mongodb://localhost:27017/andrewcmoss_express', { useNewUrlParser: true });
 const connection = mongoose.connection;
 
+//connect to mongodb
 connection.once('open', () => {
 	console.log("MongoDB connection established!");
 })
@@ -21,7 +24,14 @@ connection.once('open', () => {
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/contact', contactRoutes);
+app.use('/log', logRoutes);
 
+
+/****
+ * 
+ * Routes for contact collection
+ * 
+ */
 //find all contacts
 contactRoutes.route('/').get( (req, res) => {
 	Contact.find( (err, contact) => {
@@ -33,6 +43,7 @@ contactRoutes.route('/').get( (req, res) => {
 	});
 });
 
+//find contacts by id
 contactRoutes.route('/:id').get( (req, res) => {
 	let id = req.params.id;
 	Contact.findById(id, (err, contact) => {
@@ -79,15 +90,46 @@ contactRoutes.route('/add').post( (req, res) => {
 // 	});
 // });
 
+/**
+ * 
+ * Routes for logs collection
+ * 
+ */
 
-app.get('/api/contacts', (req, res) => {
-	const contacts = [
-		{id: 1, name: 'Dylan Moss', organization: "Moss Co.", email: "dmoss@mossco.com", phone: "555-555-5555", message: "Hello world!"},
-		{id: 2, name: 'Frank Moss', organization: "Moss Co.", email: "fmoss@mossco.com", phone: "555-555-5555", message: "Hello world!"},
-		{id: 3, name: 'Janet Moss', organization: "Moss Co.", email: "jmoss@mossco.com", phone: "555-555-5555", message: "Hello world!"}	
-	];
+//find all logs
+logRoutes.route('/').get( (req, res) =>{
+	Log.find( (err, log) => {
+		if (err) {
+			console.log(err);
+		} else {
+			res.json(log);
+		}
+	})
+})
 
-	res.json(contacts);
+//find all logs by id
+logRoutes.route('/:id').get( (req, res) => {
+	let id = req.params.id;
+	Log.findById(id, (err, log) => {
+		if (err) {
+			console.log(err);
+		} else {
+			res.json(log);
+		}
+	})
+})
+
+//add log
+logRoutes.route('/add').post( (req, res) => {
+	let log = new Log(req.body);
+	log.save()
+	.then(contact => { 
+		res.status(200).json({'log': 'Log added successfully!'});
+	})
+	.catch(err => {
+		res.status(400).send('Log was NOT added!')
+	});
 });
+
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
