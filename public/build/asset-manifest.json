@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.43ce03a6.chunk.css",
+    "main.js": "/static/js/main.b1acca88.chunk.js",
+    "main.js.map": "/static/js/main.b1acca88.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.090b690c.chunk.js": "/static/js/2.090b690c.chunk.js",
+    "static/js/2.090b690c.chunk.js.map": "/static/js/2.090b690c.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.580af778d42dad880e0cda0fc98b0a2c.js": "/precache-manifest.580af778d42dad880e0cda0fc98b0a2c.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.43ce03a6.chunk.css.map": "/static/css/main.43ce03a6.chunk.css.map",
+    "static/media/Lola_Bath_1.JPG": "/static/media/Lola_Bath_1.9015f74d.JPG",
+    "static/media/Lola_Bath_2.JPG": "/static/media/Lola_Bath_2.e14214f0.JPG",
+    "static/media/Lola_Bath_3.JPG": "/static/media/Lola_Bath_3.a82d60ce.JPG",
+    "static/media/Yoda_1.JPG": "/static/media/Yoda_1.e76b088f.JPG",
+    "static/media/Yoda_2.JPG": "/static/media/Yoda_2.8a058df7.JPG",
+    "static/media/Yoda_3.JPG": "/static/media/Yoda_3.8f9668c9.JPG",
+    "static/media/calm-waters-dark-1786x358.jpg": "/static/media/calm-waters-dark-1786x358.7823a032.jpg",
+    "static/media/home-bg.jpg": "/static/media/home-bg.be70d7dd.jpg",
+    "static/media/plus-circle-blue.svg": "/static/media/plus-circle-blue.b0f643f8.svg"
+  }
+}
