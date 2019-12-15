@@ -15,12 +15,13 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.6.0",
-    "nodemon": "^1.19.1",
-    "pug": "^2.0.3",
-    "uuid": "^3.3.2"
+    "mongoose": "^5.8.1",
+    "nodemon": "^1.19.4",
+    "pug": "^2.0.4",
+    "uuid": "^3.3.3"
   },
   "dependencies": {
-    "concurrently": "^4.1.0"
-  }
+    "concurrently": "^4.1.2"
+  },
+  "proxy": "http://localhost:5000"
 }
