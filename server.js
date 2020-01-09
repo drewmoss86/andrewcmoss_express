@@ -8,18 +8,24 @@ const mongoose = require("mongoose");
 const path = require("path");
 const port = process.env.PORT || 5000;
 
+//mongoose promise
+mongoose.Promise = global.Promise;
+
 //bring in schema
 const Contact = require("./model/Contact");
 const Log = require("./model/Log");
 
 //cannot access localhost:27017 on http interface
 mongoose.connect(
-  "mongodb://drewmoss86:6w8e9r7d@localhost:27017/andrewcmoss_express",
+  "mongodb://drewmoss86:" +
+    process.env.MONGO_PW +
+    "@localhost:27017/andrewcmoss_express",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
 );
+
 const connection = mongoose.connection;
 
 //connect to mongodb
@@ -79,6 +85,7 @@ contactRoutes.route("/add").post((req, res) => {
         res.status(200).json({ contact: "Contact added successfully!" });
       })
       .catch(err => {
+        console.log(err);
         res.status(400).send("Contact was NOT added");
       });
   } catch (err) {
@@ -99,7 +106,7 @@ logRoutes.route("/").get((req, res) => {
       console.log(err);
     } else {
       res.json(log);
-    } 
+    }
   });
 });
 
