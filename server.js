@@ -99,7 +99,7 @@ logRoutes.route("/").get((req, res) => {
       console.log(err);
     } else {
       res.json(log);
-    }
+    } 
   });
 });
 
