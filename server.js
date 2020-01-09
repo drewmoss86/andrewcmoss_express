@@ -15,7 +15,10 @@ const Log = require("./model/Log");
 //cannot access localhost:27017 on http interface
 mongoose.connect(
   "mongodb://drewmoss86:6w8e9r7d@localhost:27017/andrewcmoss_express",
-  { useNewUrlParser: true }
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
 );
 const connection = mongoose.connection;
 
@@ -31,7 +34,7 @@ app.use(cors());
 app.use("/contact", contactRoutes);
 app.use("/log", logRoutes);
 app.use("/", express.static(path.join(__dirname, "/public/build/")));
-
+console.log(express.static(path.join(__dirname, "/public/build/")));
 /****
  *
  * Routes for contact collection
@@ -52,27 +55,35 @@ contactRoutes.route("/").get((req, res) => {
 
 //find contacts by id
 contactRoutes.route("/:id").get((req, res) => {
-  let id = req.params.id;
-  Contact.findById(id, (err, contact) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(contact);
-    }
-  });
+  try {
+    let id = req.params.id;
+    Contact.findById(id, (err, contact) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(contact);
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 //add contact
 contactRoutes.route("/add").post((req, res) => {
-  let contact = new Contact(req.body);
-  contact
-    .save()
-    .then(contact => {
-      res.status(200).json({ contact: "Contact added successfully!" });
-    })
-    .catch(err => {
-      res.status(400).send("Contact was NOT added");
-    });
+  try {
+    let contact = new Contact(req.body);
+    contact
+      .save()
+      .then(contact => {
+        res.status(200).json({ contact: "Contact added successfully!" });
+      })
+      .catch(err => {
+        res.status(400).send("Contact was NOT added");
+      });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 /**
