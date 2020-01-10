@@ -16,16 +16,18 @@ const Contact = require("./model/Contact");
 const Log = require("./model/Log");
 
 //cannot access localhost:27017 on http interface
+// mongoose.connect(
+//   "mongodb://drewmoss86:" +
+//     process.env.MONGO_PW +
+//     "@localhost:27017/andrewcmoss_express",
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+//   }
+// );
 mongoose.connect(
-  "mongodb://drewmoss86:" +
-    process.env.MONGO_PW +
-    "@localhost:27017/andrewcmoss_express",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
+  "mongodb+srv://drewmoss86:6w8e9r7d@andrewcmoss-ls41h.mongodb.net/test?retryWrites=true&w=majority"
 );
-
 const connection = mongoose.connection;
 
 //connect to mongodb
