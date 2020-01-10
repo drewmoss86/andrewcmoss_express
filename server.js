@@ -16,18 +16,19 @@ const Contact = require("./model/Contact");
 const Log = require("./model/Log");
 
 //cannot access localhost:27017 on http interface
-// mongoose.connect(
-//   "mongodb://drewmoss86:" +
-//     process.env.MONGO_PW +
-//     "@localhost:27017/andrewcmoss_express",
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-//   }
-// );
 mongoose.connect(
-  "mongodb+srv://drewmoss86:6w8e9r7d@andrewcmoss-ls41h.mongodb.net/test?retryWrites=true&w=majority"
+  "mongodb://" +
+    process.env.MONGO_USER +
+    ":" +
+    process.env.MONGO_PW +
+    "@localhost:27017/" +
+    process.env.MONGO_DB,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
 );
+
 const connection = mongoose.connection;
 
 //connect to mongodb
@@ -45,8 +46,8 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use("/contact", contactRoutes);
 app.use("/log", logRoutes);
-app.use("/", express.static(path.join(__dirname, "/public/build/")));
-console.log(express.static(path.join(__dirname, "/public/build/")));
+app.use("/", express.static(path.join(__dirname, "/client/build/")));
+console.log(express.static(path.join(__dirname, "/client/build/")));
 /****
  *
  * Routes for contact collection

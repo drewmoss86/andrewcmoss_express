@@ -1,6 +1,8 @@
 {
   "env": {
     "MONGO_PW": "6w8e9r7d",
+    "MONGO_USER": "drewmoss86",
+    "MONGO_DB": "andrewcmoss_express",
     "PORT": 5000
   }
 }
