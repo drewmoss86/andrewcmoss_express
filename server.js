@@ -33,6 +33,10 @@ connection.once("open", () => {
   console.log("MongoDB connection established!");
 });
 
+connection.on("error", err => {
+  console.log(err);
+});
+
 //middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
